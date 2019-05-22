@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+@SuppressWarnings("Duplicates")
 public class Main extends PApplet {
 
     private PApplet pApplet;
@@ -24,9 +25,9 @@ public class Main extends PApplet {
     }
 
     private void generateBoundaries() {
-        walls.add(new Boundary(0, 0, height, 0));
-        walls.add(new Boundary(height, 0, height, height));
-        walls.add(new Boundary(height, height, 0, height));
+        walls.add(new Boundary(0, 0, width, 0));
+        walls.add(new Boundary(width, 0, width, height));
+        walls.add(new Boundary(width, height, 0, height));
         walls.add(new Boundary(0, height, 0, 0));
 
         Random random = new Random();

@@ -1,6 +1,7 @@
 package RaycastingDoom;
 
 import processing.core.PApplet;
+import processing.event.MouseEvent;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -10,9 +11,10 @@ public class Main extends PApplet {
 
     private PApplet pApplet;
     private List<Boundary> walls = new ArrayList<>();
+    private List<Box> boxes = new ArrayList<>();
     private Particle particle;
-    int sceneH = 800;
-    int sceneW = 800;
+    private int sceneH = 800;
+    private int sceneW = 800;
 
 
     public static void main(String[] args) {
@@ -21,8 +23,17 @@ public class Main extends PApplet {
 
     public void setup() {
         generateBoundaries();
+        generateBoxes();
         particle = new Particle(pApplet);
+    }
 
+    private void generateBoxes() {
+        Random random = new Random();
+        for (int i = 0; i < 7; i++) {
+            Box box = new Box(random.nextInt(800), random.nextInt(800),
+                    random.nextInt(100) + 10, random.nextInt(100) + 10);
+            boxes.add(box);
+        }
     }
 
     public void keyPressed() {
@@ -37,11 +48,15 @@ public class Main extends PApplet {
         }
     }
 
+    public void mouseWheel(MouseEvent event) {
+        particle.rotate(((float) event.getCount()) / 8);
+    }
+
     private void generateBoundaries() {
-        walls.add(new Boundary(0,0,sceneW,0));
-        walls.add(new Boundary(sceneW,0,sceneW,sceneH));
-        walls.add(new Boundary(sceneW,sceneH,0,sceneH));
-        walls.add(new Boundary(0,sceneH,0,0));
+        walls.add(new Boundary(0, 0, sceneW, 0));
+        walls.add(new Boundary(sceneW, 0, sceneW, sceneH));
+        walls.add(new Boundary(sceneW, sceneH, 0, sceneH));
+        walls.add(new Boundary(0, sceneH, 0, 0));
 
         Random random = new Random();
         for (int i = 0; i < 5; i++) {
@@ -55,9 +70,10 @@ public class Main extends PApplet {
         background(0);
 
         walls.forEach(x -> x.draw(pApplet));
+        boxes.forEach(b -> b.draw(pApplet));
 
         particle.show();
-//        particle.update(mouseX, mouseY);
+        particle.update(mouseX, mouseY);
         List<Float> scene = particle.look(walls, pApplet);
 
         int w = sceneW / scene.size();
@@ -72,15 +88,13 @@ public class Main extends PApplet {
             float h = map(scene.get(i), 0, sceneW, sceneH, 0);
             fill(b);
             rectMode(CENTER);
-            rect(i*w + w/2, sceneH/2, w+1, h);
+            rect(i * w + w / 2, sceneH / 2, w + 1, h);
         }
         popStyle();
 
     }
 
     public void settings() {
-//        fullScreen();
-
         size(1600, 800);
         pApplet = this;
     }

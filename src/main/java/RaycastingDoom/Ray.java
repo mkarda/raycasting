@@ -59,4 +59,8 @@ public class Ray {
 
 
     }
+
+    public PVector cast(Box box) {
+        return null;
+    }
 }

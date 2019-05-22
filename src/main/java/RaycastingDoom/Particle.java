@@ -49,8 +49,6 @@ public class Particle {
             }
 
             if (closest != null) {
-//                p.colorMode(PConstants.HSB);
-//                p.stroke((i + p.frameCount *10)%360, 255, 255, 100);
                 p.stroke(255, 100);
                 p.line(pos.x, pos.y, closest.x, closest.y);
             }
@@ -59,10 +57,25 @@ public class Particle {
         return scene;
     }
 
-//    public void update(int mouseX, int mouseY) {
-//        pos.set(mouseX, mouseY);
-//
-//    }
+    List<Float> lookAtBoxes(List<Box> boxes, PApplet p) {
+        List<Float> scene = new ArrayList<>();
+
+        for (int i = 0; i < rays.size(); i++) {
+            Ray ray = rays.get(i);
+            PVector closest = null;
+            final float[] record = {Float.MAX_VALUE};
+            for (Box box : boxes) {
+                PVector point = ray.cast(box);
+            }
+
+
+        }
+        return null;
+    }
+
+    public void update(int mouseX, int mouseY) {
+        pos.set(mouseX, mouseY);
+    }
 
     float heading = 0;
 

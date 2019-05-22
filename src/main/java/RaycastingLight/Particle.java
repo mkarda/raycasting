@@ -55,9 +55,9 @@ class Particle {
             }
 
             if (closest != null) {
-//                p.colorMode(PConstants.HSB);
-//                p.stroke((i) % 360, 255, 255, 100);
-                p.stroke(255, 100);
+                p.colorMode(PConstants.HSB);
+                p.stroke((i) % 360, 255, 255, 100);
+//                p.stroke(255, 100);
                 p.line(pos.x, pos.y, closest.x, closest.y);
             }
         }
