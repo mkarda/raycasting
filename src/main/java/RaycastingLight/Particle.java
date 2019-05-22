@@ -1,25 +1,33 @@
+package RaycastingLight;
+
 import processing.core.PApplet;
+import processing.core.PConstants;
 import processing.core.PVector;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class Particle {
+class Particle {
 
+    public static final int raysCount = 500;
     private PVector pos;
     private PApplet p;
 
     private List<Ray> rays = new ArrayList<>();
 
-    public Particle(PApplet p) {
+    Particle(PApplet p) {
         this.p = p;
         pos = new PVector(p.width / 2, p.height / 2);
-        for (int a = -30; a < 30; a += 1) {
-            rays.add(new Ray(this.pos, p.radians(a)));
+        for (int a = 0; a < raysCount; a += 1) {
+
+            double v = (360.0 / raysCount) * a;
+
+
+            rays.add(new Ray(this.pos, p.radians((float) v)));
         }
     }
 
-    public void show() {
+    void show() {
         p.fill(255);
         p.ellipse(pos.x, pos.y, 3, 3);
 
@@ -28,8 +36,8 @@ public class Particle {
         }
     }
 
-    public List<Float> look(List<Boundary> walls, PApplet p) {
-        List<Float> scene = new ArrayList<>();
+    void look(List<Boundary> walls, PApplet p) {
+
         for (int i = 0; i < rays.size(); i++) {
             Ray ray = rays.get(i);
             PVector closest = null;
@@ -48,37 +56,17 @@ public class Particle {
 
             if (closest != null) {
 //                p.colorMode(PConstants.HSB);
-//                p.stroke((i + p.frameCount *10)%360, 255, 255, 100);
+//                p.stroke((i) % 360, 255, 255, 100);
                 p.stroke(255, 100);
                 p.line(pos.x, pos.y, closest.x, closest.y);
             }
-            scene.add(record[0]);
         }
-        return scene;
     }
 
-//    public void update(int mouseX, int mouseY) {
-//        pos.set(mouseX, mouseY);
-//
-//    }
-
-    float heading = 0;
-
-    void rotate(float angle) {
-        heading += angle;
-        int index = 0;
-
-        for (int a = -30; a < 30; a++) {
-            rays.get(index).setAngle(p.radians(a) + heading);
-            index++;
-        }
-
+    public void update(int mouseX, int mouseY) {
+        pos.set(mouseX, mouseY);
 
     }
 
-    public void move(float i) {
-        PVector velocity = PVector.fromAngle(heading);
-        velocity.setMag(i);
-        pos.add(velocity);
-    }
+
 }

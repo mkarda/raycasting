@@ -1,10 +1,12 @@
+package RaycastingDoom;
+
 import processing.core.PApplet;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-public class MainRayCast extends PApplet {
+public class Main extends PApplet {
 
     private PApplet pApplet;
     private List<Boundary> walls = new ArrayList<>();
@@ -14,7 +16,7 @@ public class MainRayCast extends PApplet {
 
 
     public static void main(String[] args) {
-        PApplet.main("MainRayCast", args);
+        PApplet.main("RaycastingDoom.Main", args);
     }
 
     public void setup() {
