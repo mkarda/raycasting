@@ -40,6 +40,8 @@ public class Particle {
                 PVector point = ray.cast(wall);
                 if (point != null) {
                     float dist = PVector.dist(this.pos, point);
+                    float a = ray.dir.heading() - this.heading;
+                    dist*=Math.cos(a);
 
                     if (dist < record[0]) {
                         record[0] = dist;

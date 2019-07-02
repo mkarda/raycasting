@@ -10,6 +10,7 @@ public class Main extends PApplet {
 
 
     private int circles = 1;
+    private double timeSpan = 0.02;
 
     public static void main(String[] args) {
         PApplet.main("Fourier.Main", args);
@@ -54,15 +55,16 @@ public class Main extends PApplet {
             line(prevx, prevy, x, y);
 
         }
-        time += 0.03;
+
+        time += timeSpan;
         wave.addFirst(y);
         drawWave(x, y, (LinkedList) wave);
 
     }
 
     private void drawWave(float x, float y, List<Float> wave) {
-        translate(200 * 2, 0);
-        line(x - 200 * 2, y, 0, wave.get(0));
+        translate(300 * 2, 0);
+        line(x - 300 * 2, y, 0, wave.get(0));
         beginShape();
         noFill();
         for (int i = 0; i < wave.size(); i++) {
@@ -80,7 +82,10 @@ public class Main extends PApplet {
             circles += 1;
         } else if (keyCode == DOWN && circles > 1) {
             circles -= 1;
-
+        } else if (keyCode == LEFT && timeSpan > 0.005) {
+            timeSpan -= 0.005;
+        } else if (keyCode == RIGHT && timeSpan < 0.05) {
+            timeSpan += 0.005;
         }
     }
 }

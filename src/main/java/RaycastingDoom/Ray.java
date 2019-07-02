@@ -5,7 +5,7 @@ import processing.core.PVector;
 
 public class Ray {
     private PVector pos;
-    private PVector dir;
+    PVector dir;
 
     public Ray(PVector pos, float angle) {
         this.pos = pos;
