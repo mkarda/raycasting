@@ -1,4 +1,4 @@
-package FourierDrawingMachine;
+package FourierUtils;
 
 public class ComplexNumber {
     private float re;

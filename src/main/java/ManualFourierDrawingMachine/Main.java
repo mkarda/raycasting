@@ -1,14 +1,20 @@
 package ManualFourierDrawingMachine;
 
-import FourierDrawingMachine.ComplexNumber;
-import FourierDrawingMachine.Fourier;
+import FourierUtils.ComplexNumber;
+import FourierUtils.FourierCalc;
+import FourierUtils.FourierDrawing;
 import processing.core.PApplet;
 import processing.core.PVector;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.Deque;
+import java.util.LinkedList;
+import java.util.List;
 
 public class Main extends PApplet {
 
+    private FourierDrawing fDrawing;
 
     private PApplet pApplet;
     private List<ComplexNumber> fourierY = new ArrayList<>();
@@ -17,6 +23,7 @@ public class Main extends PApplet {
     private Deque<PVector> drawing = new LinkedList<>();
     private State state;
 
+    private float time = 0;
 
     public static void main(String[] args) {
         PApplet.main("ManualFourierDrawingMachine.Main", args);
@@ -25,6 +32,7 @@ public class Main extends PApplet {
     public void settings() {
         size(1800, 800);
         pApplet = this;
+        fDrawing = new FourierDrawing(pApplet);
     }
 
     public void mousePressed() {
@@ -51,7 +59,7 @@ public class Main extends PApplet {
         }
 
 
-        Fourier fourier = new Fourier(pApplet);
+        FourierCalc fourier = new FourierCalc(pApplet);
         fourierX = fourier.dft(x);
         fourierY = fourier.dft(y);
 
@@ -61,10 +69,7 @@ public class Main extends PApplet {
 
     public void setup() {
         state = State.START;
-
     }
-
-    private float time = 0;
 
 
     public void draw() {
@@ -84,8 +89,8 @@ public class Main extends PApplet {
 
         } else if (state == State.FOURIER) {
 
-            PVector vx = epicycles(width / 2, 150, 0, fourierX);
-            PVector vy = epicycles(150, height / 2, HALF_PI, fourierY);
+            PVector vx = fDrawing.epicycles(width / 2, 150, 0, fourierX, time);
+            PVector vy = fDrawing.epicycles(150, height / 2, HALF_PI, fourierY, time);
 
             PVector v = new PVector(vx.x, vy.y);
             path.add(v);
@@ -94,45 +99,7 @@ public class Main extends PApplet {
             time += dt;
             line(vx.x, vx.y, v.x, v.y);
             line(vy.x, vy.y, v.x, v.y);
-            drawPath((List<PVector>) path);
+            fDrawing.drawPath((List<PVector>) path);
         }
-    }
-
-    private PVector epicycles(float x, float y, float rotation, List<ComplexNumber> fourier) {
-        for (ComplexNumber complexNumber : fourier) {
-
-            float prevx = x;
-            float prevy = y;
-
-            float freq = complexNumber.getFreq();
-            float radius = complexNumber.getAmp();
-            float phase = complexNumber.getPhase();
-
-
-            x += radius * cos(freq * time + phase + rotation);
-            y += radius * sin(freq * time + phase + rotation);
-
-            stroke(255, 100);
-            noFill();
-            ellipse(prevx, prevy, radius * 2, radius * 2);
-            fill(255);
-            stroke(255);
-            line(prevx, prevy, x, y);
-        }
-        return new PVector(x, y);
-    }
-
-    private void drawPath(List<PVector> path) {
-
-        beginShape();
-        noFill();
-        for (PVector pVector : path) {
-            vertex(pVector.x, pVector.y
-            );
-        }
-        endShape();
-    }
-
-    public void keyPressed() {
     }
 }

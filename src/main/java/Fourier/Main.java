@@ -1,19 +1,24 @@
 package Fourier;
 
+import FourierUtils.FourierDrawing;
 import processing.core.PApplet;
 
 import java.util.Deque;
 import java.util.LinkedList;
-import java.util.List;
 
 public class Main extends PApplet {
 
+    FourierDrawing fDrawing;
 
     private int circles = 1;
     private double timeSpan = 0.02;
 
     public static void main(String[] args) {
         PApplet.main("Fourier.Main", args);
+    }
+
+    public void setup() {
+        fDrawing = new FourierDrawing(this);
     }
 
     public void settings() {
@@ -58,24 +63,11 @@ public class Main extends PApplet {
 
         time += timeSpan;
         wave.addFirst(y);
-        drawWave(x, y, (LinkedList) wave);
+        fDrawing.drawWave(x, y, (LinkedList) wave);
 
     }
 
-    private void drawWave(float x, float y, List<Float> wave) {
-        translate(300 * 2, 0);
-        line(x - 300 * 2, y, 0, wave.get(0));
-        beginShape();
-        noFill();
-        for (int i = 0; i < wave.size(); i++) {
-            vertex(i * 2, wave.get(i));
-        }
-        endShape();
-        if (wave.size() > 1000) {
-            wave.remove(wave.size() - 1);
-        }
-        System.out.println(wave.size());
-    }
+
 
     public void keyPressed() {
         if (keyCode == UP && circles < 30) {

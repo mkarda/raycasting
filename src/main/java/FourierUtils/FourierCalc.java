@@ -1,15 +1,15 @@
-package FourierDrawingMachine;
+package FourierUtils;
 
 import processing.core.PApplet;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class Fourier {
+public class FourierCalc {
 
     private PApplet p;
 
-    public Fourier(PApplet p) {
+    public FourierCalc(PApplet p) {
         this.p = p;
     }
 
