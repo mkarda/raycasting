@@ -4,11 +4,11 @@ import processing.core.PApplet;
 import processing.core.PVector;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.Deque;
 import java.util.LinkedList;
 import java.util.List;
 
-@SuppressWarnings("Duplicates")
 public class Main extends PApplet {
 
 
@@ -31,15 +31,17 @@ public class Main extends PApplet {
         List<Float> x = new ArrayList<>();
 
         for (int i = 0; i < 500; i++) {
-            float angle = map(i, 0, 100, 0, TWO_PI);
-            x.add(200 * noise(i / 50f + 12));
-            y.add(200 * noise(i / 50f + 10000)+ 300);
+            x.add(400 * noise(i / 200f + 122));
+            y.add(400 * noise(i / 200f + 142));
         }
 
 
         Fourier fourier = new Fourier(pApplet);
         fourierX = fourier.dft(x);
         fourierY = fourier.dft(y);
+
+        fourierX.sort(Comparator.comparing(ComplexNumber::getAmp).reversed());
+        fourierY.sort(Comparator.comparing(ComplexNumber::getAmp).reversed());
     }
 
     private float time = 0;
@@ -49,8 +51,8 @@ public class Main extends PApplet {
     public void draw() {
         background(0);
 
-        PVector vx = epicycles(400, 150, 0, fourierX);
-        PVector vy = epicycles(150, 400, HALF_PI, fourierY);
+        PVector vx = epicycles(width/2, 150, 0, fourierX);
+        PVector vy = epicycles(150, height/2, HALF_PI, fourierY);
 
         PVector v = new PVector(vx.x, vy.y);
         path.add(v);
