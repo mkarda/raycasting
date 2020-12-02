@@ -9,9 +9,13 @@ public class Autocomplete {
 
     public static void main(String[] args) {
 
+        String[] s = new String[] {"jedne", "dwa", "trzy"};
+        int[] times = new int[] {1,2,3};
+        AutocompleteSystem autocompleteSystem = new AutocompleteSystem(s, times);
+
     }
 
-    class Node {
+    static class Node {
         String sentence;
         int times;
 
@@ -21,7 +25,7 @@ public class Autocomplete {
         }
     }
 
-    class AutocompleteSystem {
+    static class AutocompleteSystem {
         private HashMap<String, Integer>[] arr;
         private String cur_sent = "";
 
