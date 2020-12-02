@@ -1,0 +1,92 @@
+1. OOPs concept.
+2. Abstraction vs Interface
+
+    What is Interface?
+    The interface is a blueprint that can be used to implement a class. The interface does not contain any concrete methods (methods that have code). All the methods of an interface are abstract methods.
+
+    An interface cannot be instantiated. However, classes that implement interfaces can be instantiated. Interfaces never contain instance variables but, they can contain public static final variables (i.e., constant class variables)
+
+    What Is Abstract Class?
+    A class which has the abstract keyword in its declaration is called abstract class. Abstract classes should have at least one abstract method. , i.e., methods without a body. It can have multiple concrete methods.
+
+    Abstract classes allow you to create blueprints for concrete classes. But the inheriting class should implement the abstract method.
+
+    Abstract classes cannot be instantiated.
+
+    Important Reasons For Using Interfaces
+
+    Interfaces are used to achieve abstraction.
+    Designed to support dynamic method resolution at run time
+    It helps you to achieve loose coupling.
+    Allows you to separate the definition of a method from the inheritance hierarchy
+    Important Reasons For Using Abstract Class
+
+    Abstract classes offer default functionality for the subclasses.
+    Provides a template for future specific classes
+    Helps you to define a common interface for its subclasses
+    Abstract class allows code reusability.
+    Interface Vs. Abstract Class
+    Parameters	Interface	Abstract class
+    Speed	Slow	Fast
+    Multiple Inheritances	Implement several Interfaces	Only one abstract class
+    Structure	Abstract methods	Abstract & concrete methods
+    When to use	Future enhancement	To avoid independence
+    Inheritance/ Implementation	A Class can implement multiple interfaces	The class can inherit only one Abstract Class
+    Default Implementation	While adding new stuff to the interface, it is a nightmare to find all the implementors and implement newly defined stuff.	In case of Abstract Class, you can take advantage of the default implementation.
+    Access Modifiers	The interface does not have access modifiers. Everything defined inside the interface is assumed public modifier.	Abstract Class can have an access modifier.
+    When to use	It is better to use interface when various implementations share only method signature. Polymorphic hierarchy of value types.	It should be used when various implementations of the same kind share a common behavior.
+    Data fields	the interface cannot contain data fields.	the class can have data fields.
+    Multiple Inheritance Default	A class may implement numerous interfaces.	A class inherits only one abstract class.
+    Implementation	An interface is abstract so that it can't provide any code.	An abstract class can give complete, default code which should be overridden.
+    Use of Access modifiers	You cannot use access modifiers for the method, properties, etc.	You can use an abstract class which contains access modifiers.
+    Usage	Interfaces help to define the peripheral abilities of a class.	An abstract class defines the identity of a class.
+    Defined fields	No fields can be defined	An abstract class allows you to define both fields and constants
+    Inheritance	An interface can inherit multiple interfaces but cannot inherit a class.	An abstract class can inherit a class and multiple interfaces.
+    Constructor or destructors	An interface cannot declare constructors or destructors.	An abstract class can declare constructors and destructors.
+    Limit of Extensions	It can extend any number of interfaces.	It can extend only one class or one abstract class at a time.
+    Abstract keyword	In an abstract interface keyword, is optional for declaring a method as an abstract.	In an abstract class, the abstract keyword is compulsory for declaring a method as an abstract.
+    Class type	An interface can have only public abstract methods.	An abstract class has protected and public abstract methods.
+
+
+3. HashMap internal implementation.
+https://examples.javacodegeeks.com/core-java/maphashmap-works-internally-java/
+
+4. Equals and Hashcode concept.
+5. Set vs List
+6. ArrayList vs LinkedList
+
+1. Tree – Preoder, PostOrder, Inorder
+ree Traversals (Inorder, Preorder and Postorder)
+Unlike linear data structures (Array, Linked List, Queues, Stacks, etc) which have only one logical way to traverse them, trees can be traversed in different ways.
+Following are the generally used ways for traversing trees.
+
+
+Depth First Traversals:
+(a) Inorder (Left, Root, Right) : 4 2 5 1 3
+(b) Preorder (Root, Left, Right) : 1 2 4 5 3
+(c) Postorder (Left, Right, Root) : 4 5 2 3 1
+2. Graph – DFS vs BFS
+
+Algorithms: Given a circular linked list, detect a loop in it.
+https://www.geeksforgeeks.org/detect-and-remove-loop-in-a-linked-list/
+
+multithreading
+
+1. JVM internal architecture.
+2. Memory allocation in Java (Stack vs Heap)
+
+1: Java runtime and compile polymorphism
+2: Overloading vs overriding in inheritance
+3: Basic questions on threads and its methods.
+4: Questions on hashmap and hashset.
+6: equals and hashcode questions in various scenerios.
+7: Few try catch problem scenerios.
+8: Comparator vs comparable java.
+
+1: Deadlocks in java.
+2: Singleton design pattern.
+3: Various design patterns used and explain few of them.
+6: Which all Data structures have you used and where.
+7: How Arrays.sort() works internally.
+8: Various sorting techniques and their comparisons and applications.
+
