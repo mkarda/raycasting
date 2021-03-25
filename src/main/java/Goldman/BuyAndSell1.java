@@ -5,7 +5,8 @@ public class BuyAndSell1 {
     public static void main(String[] args) {
 
 
-        int[] input = {7, 1, 5, 3, 6, 4};
+//        int[] input = {7, 1, 5, 3, 6, 4};
+        int[] input = {2, 5, 0, 2,3, 4};
 
         int result = getMaxProfit(input);
         System.out.println(result);

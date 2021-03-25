@@ -44,7 +44,7 @@ public class LongestNonPalindromString {
 
     // Driver Program to test above function
     public static void main(String[] args) {
-        String str = "abba";
+        String str = "aabbaa";
         System.out.println("Maximum Length = "
                 + maxLengthNonPalinSubstring(str));
     }

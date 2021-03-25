@@ -10,7 +10,7 @@ public class LoggerRateLimiter {
 
         Logger logger = new Logger();
         System.out.println(logger.shouldPrintMessage(1,"foo"));
-        System.out.println(logger.shouldPrintMessage(20,"bar"));
+        System.out.println(logger.shouldPrintMessage(2,"bar"));
     }
 
     class Logger2 {

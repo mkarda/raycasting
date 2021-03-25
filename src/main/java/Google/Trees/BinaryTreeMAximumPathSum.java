@@ -1,6 +1,5 @@
 package Google.Trees;
 
-import sun.reflect.generics.tree.Tree;
 
 public class BinaryTreeMAximumPathSum {
     private static int max_sum = Integer.MIN_VALUE;

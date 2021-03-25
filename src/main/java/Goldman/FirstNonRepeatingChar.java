@@ -11,7 +11,7 @@ public class FirstNonRepeatingChar {
     public static void main(String[] args) {
 
 
-        boolean b = Integer.valueOf(128) == Integer.valueOf(128);
+        boolean b = Integer.valueOf(212) == Integer.valueOf(212);
         System.out.println(b);
 
 
